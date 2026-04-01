@@ -60,19 +60,22 @@
       }
     }
 
-    /* bouncing images */
-    .bounce-img {
+    /* NEW floating images */
+    .float-img {
       position: absolute;
-      width: 500px;
-      animation: bounce 1s infinite alternate;
+      width: 120px;
+      border-radius: 10px; /* 👈 rounded */
+      animation: floatImg 8s linear forwards; /* 👈 slower */
     }
 
-    @keyframes bounce {
-      from {
-        transform: translateY(0px);
+    @keyframes floatImg {
+      0% {
+        transform: translateY(100vh);
+        opacity: 1;
       }
-      to {
-        transform: translateY(-40px);
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
       }
     }
   </style>
@@ -97,7 +100,7 @@
       yesBtn.style.display = "none";
 
       createHearts(25);
-      createImages(6); // 👈 adds bouncing pics
+      createImages(6);
     };
 
     noBtn.onclick = function() {
@@ -130,7 +133,7 @@
 
     function createImages(count) {
       const images = [
-        "https://github.com/Joshriel/forgive/blob/main/WhatsApp%20Image%202026-03-31%20at%2010.23.07%20(1).jpeg",
+        "https://raw.githubusercontent.com/Joshriel/forgive/main/WhatsApp%20Image%202026-03-31%20at%2010.23.07%20(1).jpeg",
         "https://i.imgur.com/jQ9XQ0P.png",
         "https://i.imgur.com/Z7AzH2c.png"
       ];
@@ -138,12 +141,14 @@
       for (let i = 0; i < count; i++) {
         let img = document.createElement("img");
         img.src = images[Math.floor(Math.random() * images.length)];
-        img.className = "bounce-img";
+        img.className = "float-img";
 
-        img.style.left = Math.random() * 90 + "vw";
-        img.style.top = Math.random() * 80 + "vh";
+        img.style.left = Math.random() * 100 + "vw";
+        img.style.animationDuration = (6 + Math.random() * 4) + "s";
 
         document.body.appendChild(img);
+
+        setTimeout(() => img.remove(), 9000);
       }
     }
   </script>
