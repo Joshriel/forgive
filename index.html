@@ -131,39 +131,6 @@
       }
     }
 
-    function createImages(count) {
-  const images = [
-    "https://raw.githubusercontent.com/Joshriel/forgive/main/WhatsApp%20Image%202026-03-31%20at%2010.23.07%20(1).jpeg",
-    "https://i.imgur.com/jQ9XQ0P.png",
-    "https://i.imgur.com/Z7AzH2c.png"
-  ];
-
-  const usedX = []; // track positions to avoid overlap
-  const minDistance = 120; // minimum horizontal distance between images
-
-  for (let i = 0; i < count; i++) {
-    let img = document.createElement("img");
-    img.src = images[Math.floor(Math.random() * images.length)];
-    img.className = "float-img";
-
-    // choose a random X that is not too close to existing ones
-    let x;
-    let attempts = 0;
-    do {
-      x = Math.random() * 90; // 0 - 90 vw
-      attempts++;
-      // break if too many attempts (safety)
-      if (attempts > 20) break;
-    } while (usedX.some(u => Math.abs(u - x) < minDistance / window.innerWidth * 100));
-
-    usedX.push(x);
-    img.style.left = x + "vw";
-    img.style.animationDuration = (6 + Math.random() * 4) + "s";
-    document.body.appendChild(img);
-
-    setTimeout(() => img.remove(), 9000);
-  }
-}
   </script>
 
 </body>
