@@ -6,7 +6,7 @@
     html, body {
       height: 100%;
       margin: 0;
-      font-family: poppins;
+      font-family: Poppins, sans-serif;
       background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
       overflow: hidden;
     }
@@ -21,14 +21,14 @@
 
     h1 {
       color: #ff3385;
-      font-size: 2em; /* smaller for mobile */
+      font-size: 2em;
       margin: 0 20px 40px 20px;
       word-wrap: break-word;
     }
 
+    /* Button styles */
     button {
       padding: 12px 25px;
-      margin: 10px;
       font-size: 18px;
       border: none;
       border-radius: 12px;
@@ -41,13 +41,6 @@
       color: white;
     }
 
-    /* Container for buttons */
-button-container {
-  display: flex;
-  justify-content: center; /* center horizontally */
-  gap: 15px;               /* space between buttons */
-  margin-top: 20px;
-}
     #yesBtn:hover {
       transform: scale(1.1);
     }
@@ -56,6 +49,14 @@ button-container {
       background-color: #ff4d4d;
       color: white;
       position: absolute; /* still moves around */
+    }
+
+    /* Container for buttons */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px; /* space between buttons */
+      margin-top: 20px;
     }
 
     /* floating hearts */
@@ -86,13 +87,14 @@ button-container {
     /* Mobile adjustments */
     @media (max-width: 600px) {
       h1 {
-        font-size: 3.8em;
+        font-size: 2.5em;
+      }
+      .button-container {
+        gap: 10px; /* reduce gap slightly on small screens */
       }
       button {
-        font-size: 50px;
-    padding: 10px 20px;
-    display: block;       /* stack buttons vertically */
-    margin: 10px auto;    /* auto centers horizontally */
+        font-size: 16px;
+        padding: 10px 20px;
       }
     }
 
@@ -102,10 +104,10 @@ button-container {
 
   <h1 id="question">Do you forgive me? 💔</h1>
 
- <div class="button-container">
-  <button id="yesBtn">Yes 💖</button>
-  <button id="noBtn">No 😢</button>
-</div>
+  <div class="button-container">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😢</button>
+  </div>
 
   <script>
     const question = document.getElementById("question");
@@ -182,7 +184,6 @@ button-container {
         setTimeout(() => img.remove(), 9000);
       }
     }
-
   </script>
 
 </body>
