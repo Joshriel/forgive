@@ -3,29 +3,37 @@
 <head>
   <title>Just one question...</title>
   <style>
-    body {
-      text-align: center;
+    html, body {
+      height: 100%;
+      margin: 0;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
       overflow: hidden;
-      margin: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertically center */
+      align-items: center;    /* horizontally center */
+      text-align: center;
     }
 
     h1 {
       color: #ff3385;
-      margin-top: 100px;
-      font-size: 4.5em;
+      font-size: 2em; /* smaller for mobile */
+      margin: 0 20px 40px 20px;
+      word-wrap: break-word;
     }
 
     button {
       padding: 12px 25px;
-      margin: 15px;
+      margin: 10px;
       font-size: 18px;
       border: none;
       border-radius: 12px;
       cursor: pointer;
       transition: 0.2s;
-      align: center;
     }
 
     #yesBtn {
@@ -40,7 +48,7 @@
     #noBtn {
       background-color: #ff4d4d;
       color: white;
-      position: absolute;
+      position: absolute; /* still moves around */
     }
 
     /* floating hearts */
@@ -51,34 +59,34 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
     }
 
-    /* NEW floating images */
+    /* floating images */
     .float-img {
       position: absolute;
-      width: 400px;
-      border-radius: 10px; /* 👈 rounded */
-      animation: floatImg 8s linear forwards; /* 👈 slower */
+      width: 100px;
+      border-radius: 10px;
+      animation: floatImg 8s linear forwards;
     }
 
     @keyframes floatImg {
-      0% {
-        transform: translateY(100vh);
-        opacity: 1;
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8em;
       }
-      100% {
-        transform: translateY(-10vh);
-        opacity: 0;
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
       }
     }
+
   </style>
 </head>
 <body>
@@ -129,6 +137,38 @@
         document.body.appendChild(heart);
 
         setTimeout(() => heart.remove(), 5000);
+      }
+    }
+
+    function createImages(count) {
+      const images = [
+        "https://raw.githubusercontent.com/Joshriel/forgive/main/WhatsApp%20Image%202026-03-31%20at%2010.23.07%20(1).jpeg",
+        "https://i.imgur.com/jQ9XQ0P.png",
+        "https://i.imgur.com/Z7AzH2c.png"
+      ];
+
+      const usedX = [];
+      const minDistance = 120;
+
+      for (let i = 0; i < count; i++) {
+        let img = document.createElement("img");
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.className = "float-img";
+
+        // avoid overlapping
+        let x, attempts = 0;
+        do {
+          x = Math.random() * 90;
+          attempts++;
+          if (attempts > 20) break;
+        } while (usedX.some(u => Math.abs(u - x) < minDistance / window.innerWidth * 100));
+
+        usedX.push(x);
+        img.style.left = x + "vw";
+        img.style.animationDuration = (6 + Math.random() * 4) + "s";
+
+        document.body.appendChild(img);
+        setTimeout(() => img.remove(), 9000);
       }
     }
 
