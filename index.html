@@ -48,7 +48,7 @@
     #noBtn {
       background-color: #ff4d4d;
       color: white;
-      /* remove absolute positioning */
+      /* removed absolute positioning to keep side-by-side layout */
     }
 
     /* Container for buttons */
@@ -62,7 +62,7 @@
     /* floating hearts */
     .heart {
       position: absolute;
-      font-size: 20px;
+      font-size: 20px; /* default heart size */
       animation: floatUp 5s linear infinite;
     }
 
@@ -86,15 +86,27 @@
 
     /* Mobile adjustments */
     @media (max-width: 600px) {
+      body {
+        justify-content: center; /* vertical centering */
+        align-items: center;     /* horizontal centering */
+      }
+
       h1 {
-        font-size: 4em; /* bigger text on mobile */
+        font-size: 6em; /* bigger text on mobile */
+        margin-bottom: 50px; /* space below heading */
       }
+
       .button-container {
-        gap: 15px;
+        gap: 20px; /* space between buttons */
       }
+
       button {
-        font-size: 18px;
-        padding: 10px 20px;
+        font-size: 28px;   /* bigger buttons */
+        padding: 15px 30px; 
+      }
+
+      .heart {
+        font-size: 35px;  /* bigger hearts */
       }
     }
 
