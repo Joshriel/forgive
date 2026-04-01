@@ -45,7 +45,6 @@
     /* floating hearts */
     .heart {
       position: absolute;
-      color: pink;
       font-size: 20px;
       animation: floatUp 5s linear infinite;
     }
@@ -58,6 +57,22 @@
       100% {
         transform: translateY(-10vh);
         opacity: 0;
+      }
+    }
+
+    /* bouncing images */
+    .bounce-img {
+      position: absolute;
+      width: 100px;
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      from {
+        transform: translateY(0px);
+      }
+      to {
+        transform: translateY(-40px);
       }
     }
   </style>
@@ -80,7 +95,9 @@
       question.innerText = "I love you bbe ❤️🥺";
       noBtn.style.display = "none";
       yesBtn.style.display = "none";
-      createHearts(30);
+
+      createHearts(25);
+      createImages(6); // 👈 adds bouncing pics
     };
 
     noBtn.onclick = function() {
@@ -88,13 +105,11 @@
         question.innerText = "Are you sure? 😢";
         stage = 1;
       } else {
-        // move button randomly
         const x = Math.random() * (window.innerWidth - 100);
         const y = Math.random() * (window.innerHeight - 50);
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
 
-        // make yes button bigger each time 😏
         let size = parseInt(window.getComputedStyle(yesBtn).fontSize);
         yesBtn.style.fontSize = (size + 2) + "px";
       }
@@ -110,6 +125,25 @@
         document.body.appendChild(heart);
 
         setTimeout(() => heart.remove(), 5000);
+      }
+    }
+
+    function createImages(count) {
+      const images = [
+        "https://i.imgur.com/8Km9tLL.png",
+        "https://i.imgur.com/jQ9XQ0P.png",
+        "https://i.imgur.com/Z7AzH2c.png"
+      ];
+
+      for (let i = 0; i < count; i++) {
+        let img = document.createElement("img");
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.className = "bounce-img";
+
+        img.style.left = Math.random() * 90 + "vw";
+        img.style.top = Math.random() * 80 + "vh";
+
+        document.body.appendChild(img);
       }
     }
   </script>
