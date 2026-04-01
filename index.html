@@ -21,7 +21,7 @@
 
     h1 {
       color: #ff3385;
-      font-size: 5em;
+      font-size: 2em;
       margin: 0 20px 40px 20px;
       word-wrap: break-word;
     }
@@ -48,7 +48,7 @@
     #noBtn {
       background-color: #ff4d4d;
       color: white;
-      /* remove absolute positioning */
+      /* removed absolute positioning */
     }
 
     /* Container for buttons */
@@ -62,7 +62,7 @@
     /* floating hearts */
     .heart {
       position: absolute;
-      font-size: 20px;
+      font-size: 20px; /* default heart size */
       animation: floatUp 5s linear infinite;
     }
 
@@ -90,16 +90,15 @@
         font-size: 4em; /* bigger text on mobile */
       }
       .button-container {
-        gap: 15px;
+        gap: 25px; /* space between buttons */
       }
       button {
-        font-size: 3em;
-        padding: 40px 80px;
+        font-size: 28px;   /* bigger buttons */
+        padding: 15px 30px; 
       }
-       /* Make hearts bigger on mobile */
-  .heart {
-    font-size: 35px; /* bigger hearts */
-  }
+      .heart {
+        font-size: 35px;  /* bigger hearts */
+      }
     }
 
   </style>
